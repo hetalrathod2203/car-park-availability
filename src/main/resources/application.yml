@@ -20,6 +20,14 @@ spring:
     enabled: true
     change-log: classpath:db/changelog/db.changelog-master.yml
 
+logging:
+  level:
+    liquibase: INFO
+    liquibase.database: INFO
+    liquibase.changelog: INFO
+    com.wego.car_park_availability: INFO
+    org.springframework.boot.autoconfigure.liquibase: DEBUG
+
 server:
   port: 8090
 
