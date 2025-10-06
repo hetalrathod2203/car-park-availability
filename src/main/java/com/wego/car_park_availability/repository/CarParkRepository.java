@@ -24,12 +24,10 @@ public interface CarParkRepository extends JpaRepository<CarPark, String> {
             GROUP BY car_park_no
             HAVING SUM(available_lots) > 0
         ) av ON cp.car_park_no = av.car_park_no
+        WHERE cp.latitude BETWEEN :latitude - 0.05 AND :latitude + 0.05
+        AND cp.longitude BETWEEN :longitude - 0.05 AND :longitude + 0.05
         ORDER BY (
-            6371 * acos(
-                cos(radians(:latitude)) * cos(radians(cp.latitude)) *
-                cos(radians(cp.longitude) - radians(:longitude)) +
-                sin(radians(:latitude)) * sin(radians(cp.latitude))
-            )
+            POWER(cp.latitude - :latitude, 2) + POWER(cp.longitude - :longitude, 2)
         )
         """, nativeQuery = true)
     Page<CarPark> findNearestWithAvailability(

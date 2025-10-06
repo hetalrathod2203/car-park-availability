@@ -5,3 +5,5 @@ databaseChangeLog:
       file: classpath:db/changelog/002-create-car-park-availability-table.yml
   - include:
       file: classpath:db/changelog/003-add-latitude-longitude-columns.yml
+  - include:
+      file: classpath:db/changelog/004-add-performance-indexes.yml

@@ -1,0 +1,20 @@
+databaseChangeLog:
+  - changeSet:
+      id: 004-add-performance-indexes
+      author: carpark-api
+      changes:
+        - createIndex:
+            tableName: car_parks
+            indexName: idx_car_parks_lat_lng_btree
+            columns:
+              - column:
+                  name: latitude
+              - column:
+                  name: longitude
+        - createIndex:
+            tableName: car_park_availability
+            indexName: idx_availability_update_datetime
+            columns:
+              - column:
+                  name: update_datetime
+                  descending: true
