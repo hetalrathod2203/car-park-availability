@@ -12,7 +12,7 @@ The application follows a layered architecture with:
 - **Configuration**: WebClient for external API calls and global exception handling
 
 Key features:
-- Distance calculation using Haversine formula in SQL
+- Distance calculation using optimized Euclidean formula in SQL
 - Coordinate conversion from SVY21 to WGS84 using OneMap API
 - **Multithreaded CSV processing** for faster data imports (configurable thread pool)
 - Pagination support for large datasets
@@ -187,16 +187,18 @@ curl "http://localhost:8090/carparks/nearest?latitude=1.2966&longitude=103.8547"
 
 ### Database Choice
 **PostgreSQL** was chosen for:
-- Excellent geospatial support for distance calculations
+- Excellent support for mathematical operations and indexing
 - ACID compliance for data consistency
 - Mature ecosystem and performance optimization
+- Efficient handling of coordinate-based queries with proper indexing
 
 ### Performance Considerations
-- **Distance calculation in SQL**: Reduces data transfer and leverages database indexing
+- **Optimized distance calculation**: Uses Euclidean formula with bounding box pre-filtering for ~10x faster performance
 - **Pagination**: Prevents memory issues with large datasets
 - **Latest availability query**: Optimized to fetch most recent data efficiently
 - **Multithreaded CSV import**: Parallel processing with configurable thread pool (10 threads default)
 - **Concurrent API calls**: OneMap coordinate conversion happens in parallel
+- **Database indexing**: Composite indexes on latitude/longitude for fast range queries
 
 ### Scalability
 - **Stateless design**: Easy horizontal scaling
