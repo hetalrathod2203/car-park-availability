@@ -1,0 +1,45 @@
+spring:
+  application:
+    name: car-park-availability
+  
+  datasource:
+    url: jdbc:postgresql://localhost:5432/postgres
+    username: postgres
+    password: password
+    driver-class-name: org.postgresql.Driver
+  
+  jpa:
+    hibernate:
+      ddl-auto: none
+    show-sql: false
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.PostgreSQLDialect
+  
+  liquibase:
+    enabled: true
+    change-log: classpath:db/changelog/db.changelog-master.yml
+
+server:
+  port: 8090
+
+carpark:
+  api:
+    availability-url: https://api.data.gov.sg/v1/transport/carpark-availability
+  onemap:
+    api:
+      url: https://www.onemap.gov.sg/api/common/convert/3414to4326
+      auth-url: https://www.onemap.gov.sg/api/auth/post/getToken
+      email: hetalrathod405@gmail.com
+      password: Carpark@12345
+
+springdoc:
+  api-docs:
+    path: /api-docs
+  swagger-ui:
+    path: /swagger-ui.html
+
+app:
+  threading:
+    csv-import:
+      pool-size: 1

@@ -1,0 +1,25 @@
+databaseChangeLog:
+  - changeSet:
+      id: 003-add-latitude-longitude-columns
+      author: carpark-api
+      changes:
+        - addColumn:
+            tableName: car_parks
+            columns:
+              - column:
+                  name: latitude
+                  type: DOUBLE
+              - column:
+                  name: longitude
+                  type: DOUBLE
+        - dropIndex:
+            tableName: car_parks
+            indexName: idx_car_parks_coordinates
+        - createIndex:
+            tableName: car_parks
+            indexName: idx_car_parks_coordinates
+            columns:
+              - column:
+                  name: latitude
+              - column:
+                  name: longitude

@@ -1,0 +1,58 @@
+databaseChangeLog:
+  - changeSet:
+      id: 002-create-car-park-availability-table
+      author: carpark-api
+      changes:
+        - createTable:
+            tableName: car_park_availability
+            columns:
+              - column:
+                  name: id
+                  type: BIGINT
+                  autoIncrement: true
+                  constraints:
+                    primaryKey: true
+                    nullable: false
+              - column:
+                  name: car_park_no
+                  type: VARCHAR(10)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: total_lots
+                  type: INTEGER
+              - column:
+                  name: available_lots
+                  type: INTEGER
+              - column:
+                  name: lot_type
+                  type: VARCHAR(10)
+              - column:
+                  name: update_datetime
+                  type: TIMESTAMP
+              - column:
+                  name: created_at
+                  type: TIMESTAMP
+                  defaultValueComputed: CURRENT_TIMESTAMP
+                  constraints:
+                    nullable: false
+              - column:
+                  name: updated_at
+                  type: TIMESTAMP
+                  defaultValueComputed: CURRENT_TIMESTAMP
+                  constraints:
+                    nullable: false
+        - createIndex:
+            tableName: car_park_availability
+            indexName: idx_availability_carpark_update
+            columns:
+              - column:
+                  name: car_park_no
+              - column:
+                  name: update_datetime
+        - addForeignKeyConstraint:
+            baseTableName: car_park_availability
+            baseColumnNames: car_park_no
+            constraintName: fk_availability_carpark
+            referencedTableName: car_parks
+            referencedColumnNames: car_park_no

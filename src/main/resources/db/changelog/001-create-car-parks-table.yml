@@ -1,0 +1,67 @@
+databaseChangeLog:
+  - changeSet:
+      id: 001-create-car-parks-table
+      author: carpark-api
+      changes:
+        - createTable:
+            tableName: car_parks
+            columns:
+              - column:
+                  name: car_park_no
+                  type: VARCHAR(10)
+                  constraints:
+                    primaryKey: true
+                    nullable: false
+              - column:
+                  name: address
+                  type: VARCHAR(255)
+              - column:
+                  name: x_coord
+                  type: DOUBLE
+              - column:
+                  name: y_coord
+                  type: DOUBLE
+              - column:
+                  name: car_park_type
+                  type: VARCHAR(50)
+              - column:
+                  name: type_of_parking_system
+                  type: VARCHAR(50)
+              - column:
+                  name: short_term_parking
+                  type: VARCHAR(50)
+              - column:
+                  name: free_parking
+                  type: VARCHAR(50)
+              - column:
+                  name: night_parking
+                  type: VARCHAR(10)
+              - column:
+                  name: car_park_decks
+                  type: INTEGER
+              - column:
+                  name: gantry_height
+                  type: DOUBLE
+              - column:
+                  name: car_park_basement
+                  type: VARCHAR(10)
+              - column:
+                  name: created_at
+                  type: TIMESTAMP
+                  defaultValueComputed: CURRENT_TIMESTAMP
+                  constraints:
+                    nullable: false
+              - column:
+                  name: updated_at
+                  type: TIMESTAMP
+                  defaultValueComputed: CURRENT_TIMESTAMP
+                  constraints:
+                    nullable: false
+        - createIndex:
+            tableName: car_parks
+            indexName: idx_car_parks_coordinates
+            columns:
+              - column:
+                  name: x_coord
+              - column:
+                  name: y_coord
