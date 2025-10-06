@@ -221,6 +221,16 @@ curl http://localhost:8090/actuator/metrics
 curl http://localhost:8090/actuator/info
 ```
 
+## 🤖 LLM Usage
+
+This project was developed with assistance from Amazon Q Developer and ChatGPT. LLMs helped with:
+- **Test Cases Generation**
+- **API optimization** which includes Shifting from Haversine Formula to Euclidean distance calculations 
+- **Liquibase Setup** for Database Schema
+- **Swagger doc** patterns for OneMap coordinate conversion and Singapore government APIs
+
+All LLM-generated code was validated through manual testing, performance benchmarking, and adherence to Spring Boot conventions. Complex algorithms like coordinate conversion and distance calculations were verified against Other LLM Models i.e Claude and Deepseek and tested with real Singapore coordinates.
+
 ### Future Improvements
 - Implement Redis caching for frequently accessed data
 - Add database indexing on latitude/longitude for faster queries  
