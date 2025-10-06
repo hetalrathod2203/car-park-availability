@@ -48,22 +48,17 @@ Database schema is managed by Liquibase with versioned migrations in `src/main/r
 
 ### Using Docker Compose (Recommended)
 
-1. Build the application:
-```bash
-./gradlew build
-```
-
-2. Start services:
+1. Start services (builds automatically):
 ```bash
 docker-compose up -d
 ```
 
-3. Import car park data:
+2. Import car park data:
 ```bash
 curl -X POST -F "file=@hdb-carpark-information.csv" http://localhost:8090/admin/import-carparks
 ```
 
-4. Update availability data:
+3. Update availability data:
 ```bash
 curl -X POST http://localhost:8090/admin/update-availability
 ```
